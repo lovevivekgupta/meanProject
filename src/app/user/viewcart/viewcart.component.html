@@ -1,0 +1,40 @@
+{{productdata | json}}
+<div>
+<h3>Shopping Cart</h3>
+<hr>
+
+
+<div class="row" *ngFor='let x of productdata; index as ind'>
+  <div class="col-md-3">
+    <img src="../../../assets/productimages/{{x.image[0]}}" width="100px" height="80px" 
+    style="position: absolute;left: 100px">
+  </div>
+  <br>
+  <br>
+  <div class="col-md-7"> 
+    <h3>{{x.pname }}</h3>
+    <div>
+      Price:<span style="color: red"> {{x.price | currency:"INR"}}</span>
+      <span class="text-uppercase">Qty: </span>
+      <input  type="number" style="width:70px" value="{{x.userqty}}" (change)="funUpdateQty(x._id,ind)"
+      id="txt{{ind}}">
+      <span style="padding-left:20px;"><b>Product Total Amount: </b>{{x.prototamout}}</span>
+    </div>
+  </div>
+  
+  <div class="col-md-2">
+    <span class="fa fa-trash" (click)="funCartItemRemove(x.pid)" style="font-size:25px;color:red;cursor:pointer"></span>
+  </div>
+</div>
+
+
+
+
+</div>
+<span style="color:blue;font-weight:bold;font-size:30px;float:right;margin-right:120px">
+  Total Price:{{totAmout | currency:"INR"}}
+ 
+<button class="btn btn-success ml-4" (click)="funProceedToPay()">Proceed to Pay</button>
+</span>
+<br><br>
+<hr>

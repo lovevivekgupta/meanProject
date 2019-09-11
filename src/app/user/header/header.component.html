@@ -1,0 +1,323 @@
+<!-- {{searchdata | json}} -->
+<!-- header -->
+<div id="header">
+    <div class="container">
+      <div class="pull-left">
+        <!-- Logo -->
+        <div class="header-logo">
+          <a class="logo" href="#">
+            <img src="../assets/logo.png" alt="">
+          </a>
+        </div>
+        <!-- /Logo -->
+
+        <!-- Search -->
+        <div class="header-search">
+          <form action="">
+            <input class="input search-input" type="text" placeholder="Enter your keyword" [(ngModel)]="txtsearch" name="ht">
+            <select class="input search-categories">
+              <option value="">All Category</option>
+              <option value="0" *ngFor='let d of catdatadropdown'>{{d.catname}}</option>
+            
+            </select>
+            <button class="search-btn" (click)="funSearch()"><i class="fa fa-search"></i></button>
+            <div style="margin-left: 100px">
+              <li *ngFor='let v of searchdata' [routerLink]="['prodata' ,{_id:v._id}]">{{v.p_name }}</li>
+            </div>
+          </form>
+        </div>
+        <!-- /Search -->
+      </div>
+    
+    
+      
+
+<!-- to show the logout button -->
+
+<div class="pull-right" *ngIf='!tmp'>
+  <ul class="header-btns">
+    <!-- Account -->
+    <li class="header-account dropdown default-dropdown">
+      <div class="dropdown-toggle" role="button" data-toggle="dropdown" aria-expanded="true">
+        <div class="header-btns-icon">
+          <i class="fa fa-user-o"></i>
+        </div>
+        <strong class="text-uppercase">My Account <i class="fa fa-caret-down"></i></strong>
+      </div>
+      <a href="#" class="text-uppercase" routerLink="logout">Logout</a>
+      <ul class="custom-menu">
+        <li><a href="#" routerLink="myacc"><i class="fa fa-user-o" ></i> My Account</a></li>
+        <li><a href="#"><i class="fa fa-heart-o"></i> My Wishlist</a></li>
+        <li><a href="#"><i class="fa fa-exchange"></i> Compare</a></li>
+        <li><a href="#"><i class="fa fa-check"></i> Checkout</a></li>
+        <li><a href="#"><i class="fa fa-unlock-alt"></i> Login</a></li>
+        <li><a href="#"><i class="fa fa-user-plus"></i> Create An Account</a></li>
+      </ul>
+    </li>
+    <!-- /Account -->
+
+    <!-- Cart -->
+    <li class="header-cart dropdown default-dropdown">
+      <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
+        <div class="header-btns-icon">
+          <i class="fa fa-shopping-cart"></i>
+          <span class="qty">{{tot_cart_items}}</span>
+        </div>
+        <strong class="text-uppercase">My Cart:</strong>
+        <span style="color:blue;margin-left:10px">Hi! {{fn}} </span>
+        <br>
+        <span>35.20$</span>
+      </a>
+      <div class="custom-menu">
+        <div id="shopping-cart">
+          <div class="shopping-cart-list">
+            <div class="product product-widget">
+              <div class="product-thumb">
+                <img src="./img/thumb-product01.jpg" alt="">
+              </div>
+              <div class="product-body">
+                <h3 class="product-price">$32.50 <span class="qty">x3</span></h3>
+                <h2 class="product-name"><a href="#">Product Name Goes Here</a></h2>
+              </div>
+              <button class="cancel-btn"><i class="fa fa-trash"></i></button>
+            </div>
+            <div class="product product-widget">
+              <div class="product-thumb">
+                <img src="./img/thumb-product01.jpg" alt="">
+              </div>
+              <div class="product-body">
+                <h3 class="product-price">$32.50 <span class="qty">x3</span></h3>
+                <h2 class="product-name"><a href="#">Product Name Goes Here</a></h2>
+              </div>
+              <button class="cancel-btn"><i class="fa fa-trash"></i></button>
+            </div>
+          </div>
+          <div class="shopping-cart-btns">
+            <button class="main-btn" routerLink="viewcart">View Cart</button>
+            <button class="primary-btn">Checkout <i class="fa fa-arrow-circle-right"></i></button>
+          </div>
+        </div>
+      </div>
+    </li>
+    <!-- /Cart -->
+
+    <!-- Mobile nav toggle-->
+    <li class="nav-toggle">
+      <button class="nav-toggle-btn main-btn icon-btn"><i class="fa fa-bars"></i></button>
+    </li>
+    <!-- / Mobile nav toggle -->
+  </ul>
+</div>
+<!-- /to show the logout button -->
+
+
+<!-- to show the login and registration button -->
+
+      <div class="pull-right" *ngIf='tmp'>
+        <ul class="header-btns">
+          <!-- Account -->
+          <li class="header-account dropdown default-dropdown">
+          
+            <a href="#" class="text-uppercase" data-toggle="modal" data-target="#myModal1">Login</a> / 
+            <a href="#" class="text-uppercase" data-toggle="modal" data-target="#myModal">Registration</a>
+
+
+            <!-- The Modal for Registration -->
+<div class="modal" id="myModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header  bg-success">
+        <h4 class="modal-title" class="ml-auto">Registration</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+
+      <form #frm1="ngForm" novalidate>
+      <!-- Modal body -->
+      <div class="modal-body">
+          <i class="fa fa-user" style="margin-right: 10px;font-size: 20px"></i>
+        <mat-form-field style="margin-right: 50px">
+          <input type="text" matInput placeholder="First Name" name="key" [(ngModel)]="fn" required >
+       </mat-form-field>
+      
+      <mat-form-field>
+        <input type="text" matInput placeholder="Last Name" name="key" [(ngModel)]="ln" required>
+      </mat-form-field>
+      <br>
+      Gender:
+      
+      <mat-radio-group [(ngModel)]="gender" name="gender" required>
+        <mat-radio-button style="margin-right: 20px" value="male">
+          Male
+        </mat-radio-button>
+        <mat-radio-button  value="female">
+          Female
+        </mat-radio-button>
+      </mat-radio-group>
+    
+      <br>
+      <i class="fa fa-mobile" style="margin-right: 10px;font-size: 20px"></i>
+      <mat-form-field style="width:80%">
+<input type="text" matInput placeholder="Enter Mobile Number" name="mobile" #cn="ngModel" [(ngModel)]="mobile" pattern="^([+]\d{2}\s)?\d{10}$" maxlength="15" required>
+</mat-form-field>
+
+      <p *ngIf='cn.invalid' style="color: red">* please enter 10 digit</p>
+      <br>
+      <i class="fa fa-envelope" style="margin-right: 10px;font-size: 20px"></i>
+      <mat-form-field style="width:80%" class="form-group">
+        
+<input type="email" matInput placeholder="Enter Email Id" #ct="ngModel" class="form-control" name="email" pattern="^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$"  [(ngModel)]="email">
+
+        
+      </mat-form-field>
+       <p *ngIf='ct.invalid' style="color: red">* please enter valid email Id</p>
+      <br>
+      <i class="fa fa-lock" style="margin-right: 10px;font-size: 20px"></i>
+      <mat-form-field style="width:80%">
+  <input type="password" matInput placeholder="Enter Password" #cm="ngModel" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$" name="password" required  id="txtpwd" [(ngModel)]="password" >
+      </mat-form-field>
+   <p *ngIf='cm.invalid' style="color: red">* please enter valid password</p>   
+      <img src="../../../assets/eye.png" onclick="txtpwd.type='text'" alt="" width="20px" height="15px">
+      <br>
+      <span style="font-size:20px"><i class="fa fa-address-card-o"></i></span> &nbsp; 
+    <mat-form-field  style="width:80%">
+      <textarea  matInput placeholder="Shipping Address" name="address" required [(ngModel)]="address" autocomplete="off" >  
+        </textarea>
+    </mat-form-field>
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer ml-auto bg-success">
+        <button type="submit" class="btn btn-success " (click)="funInsertReg(frm1)" [disabled]="!frm1.valid">Submit</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      </div>
+    </form>
+    </div>
+  </div>
+</div>
+            <ul class="custom-menu">
+              <li><a href="#"><i class="fa fa-user-o"></i> My Account</a></li>
+              <li><a href="#"><i class="fa fa-heart-o"></i> My Wishlist</a></li>
+              <li><a href="#"><i class="fa fa-exchange"></i> Compare</a></li>
+              <li><a href="#"><i class="fa fa-check"></i> Checkout</a></li>
+              <li><a href="#"><i class="fa fa-unlock-alt"></i> Login</a></li>
+              <li><a href="#"><i class="fa fa-user-plus"></i> Create An Account</a></li>
+            </ul>
+          </li>
+          <!-- /Account -->
+
+          <!-- Cart -->
+          <li class="header-cart dropdown default-dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
+              <div class="header-btns-icon">
+                <i class="fa fa-shopping-cart"></i>
+                <span class="qty">{{tot_cart_items}}</span>
+              </div>
+              <strong class="text-uppercase">My Cart:</strong>
+              <br>
+              <span>35.20$</span>
+            </a>
+            <div class="custom-menu">
+              <div id="shopping-cart">
+                <div class="shopping-cart-list">
+                  <div class="product product-widget">
+                    <div class="product-thumb">
+                      <img src="../../../assets/thumb-product01.jpg" alt="">
+                    </div>
+                    <div class="product-body">
+                      <h3 class="product-price">$32.50 <span class="qty">x3</span></h3>
+                      <h2 class="product-name"><a href="#">Product Name Goes Here</a></h2>
+                    </div>
+                    <button class="cancel-btn"><i class="fa fa-trash"></i></button>
+                  </div>
+                  <div class="product product-widget">
+                    <div class="product-thumb">
+                      <img src="../../../assets/thumb-product01.jpg" alt="">
+                    </div>
+                    <div class="product-body">
+                      <h3 class="product-price">$32.50 <span class="qty">x3</span></h3>
+                      <h2 class="product-name"><a href="#">Product Name Goes Here</a></h2>
+                    </div>
+                    <button class="cancel-btn"><i class="fa fa-trash"></i></button>
+                  </div>
+                </div>
+                <div class="shopping-cart-btns">
+                  <button class="main-btn" routerLink="viewcart">View Cart</button>
+                  <button class="primary-btn">Checkout <i class="fa fa-arrow-circle-right"></i></button>
+                </div>
+              </div>
+            </div>
+          </li>
+          <!-- /Cart -->
+
+          <!-- Mobile nav toggle-->
+          <li class="nav-toggle">
+            <button class="nav-toggle-btn main-btn icon-btn"><i class="fa fa-bars"></i></button>
+          </li>
+          <!-- / Mobile nav toggle -->
+        </ul>
+      </div>
+    </div>
+    <!-- header -->
+
+
+    <!-- The Modal for Login -->
+<div class="modal" id="myModal1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header bg-success">
+        <h4 class="modal-title ml-auto">Login</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+        <i class="fa fa-envelope" style="font-size: 25px;margin-right:20px"></i>
+        <mat-form-field appearance="outline" style="width: 70%" class="ml-auto">
+          <mat-label >Email Id/Mobile Number</mat-label>
+          <input  type="text"matInput placeholder="Email/Mobile" [(ngModel)]="varLoginEmail">
+        </mat-form-field> 
+        <br>
+        <i class="fa fa-lock" style="font-size: 25px;margin-right:28px"></i>
+        <mat-form-field appearance="outline" style="width: 70%" class="ml-auto">
+          <mat-label >password</mat-label>
+          <input  type="text"matInput placeholder="Password" [(ngModel)]="varLoginPwd">
+        </mat-form-field> 
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer bg-success ">
+        <button type="button" class="btn btn-danger  ml-auto" (click)="funLogin()">Login</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+<!-- after registration this modal will come -->
+
+ <!-- After Registration -->
+ <div class="modal fade" id="aftregdiv" role="dialog">
+  <div class="modal-dialog">
+  
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 [innerHTML]="com_str"></h3>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="funAutoLogin()" *ngIf="tmp2">Auto Login</button>
+
+        <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="funLmwC()">Cancel</button>
+</div>
+      </div>
+        </div>
+  </div>
+</div>
+
+
+
+

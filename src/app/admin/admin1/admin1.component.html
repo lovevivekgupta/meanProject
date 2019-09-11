@@ -1,0 +1,79 @@
+{{var_cat_data |json}}
+<br>
+<div class="text-center">
+<mat-form-field style="width:80%">
+  <input type="text" class="text-dark" matInput placeholder="Enter Category" [(ngModel)]="category" autocomplete="off">
+</mat-form-field>
+&nbsp; <button type="button" class="btn btn-primary" (click)="funinsert()">Insert</button>
+<mat-form-field  style="width:80%">
+  <input type="text" class="text-dark" [(ngModel)]="search"  matInput placeholder="Enter To Search">
+</mat-form-field>
+&nbsp; 
+<br>
+
+<br>
+
+
+<div class="col-md-12">
+<table class="table table-bordered table table-hover table table-striped">
+    <thead>
+      <tr class="bg-dark text-light">
+        <th (click)="chord('id')">#</th>
+        <th (click)="chord('name')">CategoryName</th>
+        
+      
+        <th (click)="chord('status')">Status</th>
+        <th (click)="chord('name')">Edit</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- <tr *ngFor="let item of var_cat_data| filter:temp|orderBy:colname:ord|paginate:{itemsPerPage:3,currentPage:cp}"> -->
+        <tr *ngFor="let item of var_cat_data | filter:search |  paginate:{itemsPerPage:3,currentPage:cp}">
+        <ng-container *ngIf="temp!=item._id ; else editboxes">
+        <td>{{item._id}}</td>
+        <td>{{item.catname}}</td>
+       
+        <td>
+            <span *ngIf="item.status==1; else inactive">
+                Active
+            </span>
+            <ng-template #inactive>
+              Inactive
+            </ng-template>
+            
+        </td>
+        <td class="btn btn-sm btn-outline-danger" (click)="funedit(item)">Edit</td>
+       </ng-container>
+        
+      </tr>
+    </tbody>
+  </table>
+ <ng-template #editboxes >
+     <th>{{selectedData._id}}</th>
+    
+     <td>
+      <input type="text" [(ngModel)]="selectedData.catname">
+    </td> 
+    
+    <td>
+         <select [(ngModel)]="selectedData.status">
+           <option value=1>active</option>
+           <option value=0>Inactive</option>
+         </select>
+    </td> 
+    <td>
+      <input type="button" value="save" (click)="funmodify()">
+      <input type="button" value="cancel" (click)="this.temp=0">
+    </td>
+
+ </ng-template>
+ 
+
+
+  <pagination-controls (pageChange)="cp=$event"></pagination-controls>
+</div>
+</div>
+
+
+
+

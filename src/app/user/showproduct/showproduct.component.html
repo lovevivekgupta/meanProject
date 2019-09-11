@@ -1,0 +1,54 @@
+ {{productdata | json}} 
+          <!-- row -->
+          <div class="row">
+            <!-- Product Single -->
+            <div class="col-md-4 col-sm-6 col-xs-6" *ngFor="let x of productdata">
+              <div class="product product-single">
+                <div class="product-thumb">
+                  <div class="product-label">
+                    <span>{{x.p_type}}</span>
+                    <span class="sale">{{x.discount}}</span>
+                  </div>
+                  <button class="main-btn quick-view" [routerLink]="['../prodata', {_id:x._id}]"><i class="fa fa-search-plus"></i> More Details</button>
+                  <img src="../../../assets/productimages/{{x.images[0]}}" alt="">
+                </div>
+                <div class="product-body">
+                  <h3 class="product-price">{{x.p_price}}<del class="product-old-price">{{x.p_price}}</del></h3>
+                  <div class="product-rating">
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star-o empty"></i>
+                  </div>
+                  <h2 class="product-name"><a href="#">{{x.p_name}}</a></h2>
+                  <div class="product-btns">
+                    <button class="main-btn icon-btn"><i class="fa fa-heart"></i></button>
+                    <button class="main-btn icon-btn"><i class="fa fa-exchange"></i></button>
+                    <button class="primary-btn add-to-cart"><i class="fa fa-shopping-cart"></i> Add to Cart</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- /Product Single -->
+
+           
+
+            <div class="clearfix visible-sm visible-xs"></div>
+
+          
+
+            
+
+            <div class="clearfix visible-md visible-lg visible-sm visible-xs"></div>
+
+           
+           
+
+            <div class="clearfix visible-sm visible-xs"></div>
+
+            
+          </div>
+          <!-- /row -->
+  
+       

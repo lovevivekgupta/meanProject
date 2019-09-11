@@ -1,0 +1,40 @@
+<!-- <div class="row" style="background-color: black; height:80px">
+        <div class="col-md-12 col-lg-66" style="margin:25px 0px">
+          <span style="margin-left: 20px; font-size: 25px"><a class="btn btn-danger" routerLink="ad1">CATEGORY</a></span>
+            <span style="margin-left: 20px; font-size: 25px"><a class="btn btn-warning"  routerLink="ad2">SUBCATEGORY</a></span>
+          
+          
+        </div>
+        <div class="col-md-12 col-lg-2" style="margin:10px 0px">
+            
+        </div>
+        <div class="col-md-12 col-lg-4" style="margin:25px 0px">
+            
+        </div>
+      </div> -->
+<div class="container-fluid bg- text-light">
+  <div class="row">
+      <div class="col-md-2 bg-dark " style="height:600px">
+        <h5 style="color:tomato"><i class="fa fa-user" ></i> Admin Dashboard</h5>
+        <hr style="border:1px solid white">
+        <h6 style="color:tomato">COMPONENT</h6>
+          <a class="d-block p-2"  routerLink="ad1">Category</a> 
+          <a class="d-block p-2" routerLink="ad2">Subcategory</a>
+          <a  class="d-block p-2"routerLink="ssct">Subsubcategory</a>
+          <a class="d-block p-2" routerLink="products">Products</a>
+          <a class="d-block p-2" routerLink="ad2">Subcategory</a>
+          
+          <a class="d-block p-2" routerLink="ssct">Subsubcategory</a>
+      </div>
+      <div class="col-md-10" style="height:auto">
+        <router-outlet>
+        </router-outlet>
+      </div>
+
+
+  </div>
+
+
+</div>
+
+

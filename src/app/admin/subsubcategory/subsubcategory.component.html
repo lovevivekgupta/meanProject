@@ -1,0 +1,108 @@
+
+<br>
+<div class="conatiner-fluid">
+<mat-form-field style="width: 95%">
+  <input type="text" matInput placeholder="Enter Sub Sub Category" class="text-info" [(ngModel)]="txtsubsubcat" autocomplete="off" >
+</mat-form-field>
+
+<mat-form-field style="width: 95%">
+   <mat-select placeholder="Enter Category"  class="text-info" [(ngModel)]="drpcat" (selectionChange)="funGetsubCat()">
+     <mat-option *ngFor="let item of catdata" value="{{item._id}}">
+       {{item.catname}}
+     </mat-option>
+   </mat-select>
+</mat-form-field>
+
+<mat-form-field style="width: 95%">
+  <mat-select placeholder="Enter Sub Category" [(ngModel)]="drpsubcat">
+    <mat-option *ngFor="let item of varsubcatData" value="{{item._id}}">
+      {{item.subcatname}}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
+<button class="btn btn-danger d-inline" (click)="funinsertsubsubdata()">INSERT</button>
+
+</div>
+<mat-form-field style="width: 95%">
+    <input type="text" matInput placeholder="Search"  class="text-info">
+  </mat-form-field>
+
+
+<br><br>
+<div class="container-fluid text-center">
+  <table class="table table-striped table table-bordered">
+    <thead class="thead-dark">
+      <tr>
+        <th >SubSubCatName</th>
+        <th>CatName</th>
+        <th >SubCatName</th>
+        <th>Status</th>
+        <th>Edit</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of subsubdata | paginate:{itemsPerPage:2,currentPage:cp}">
+          <ng-container *ngIf="temp!=item._id;else elsdiv">
+        <td>
+          {{item.abc.ssubcatname}}
+        </td>
+
+        <td> {{item.abc.catname}}</td>
+        <td> {{item.abc.subcatname}}</td>
+        
+        
+        <td>{{item.abc.status}}</td>
+        <td class="btn btn-warning" (click)="funedit(item)">Edit</td>
+        </ng-container>
+      </tr>
+    </tbody>
+  </table>
+  <ng-template #elsdiv>
+    
+    
+    <td>
+      <input type="text" [(ngModel)]="txtsubsub" class="form-control">
+    </td>
+     
+    <td>
+      <mat-select class="form-control" [(ngModel)]="drpCat" (selectionChange)="funGetSubCat()">
+        <mat-option *ngFor='let item of categorydata' value="{{item._id}}">
+          {{item.catname}}
+        </mat-option>
+      </mat-select>
+    </td>
+
+
+
+    <td>
+        <mat-select class="form-control" [(ngModel)]="drpSubCat">
+          <mat-option *ngFor='let item of varSubcatData' value="{{item._id}}">
+            {{item.subcatname}}
+          </mat-option>
+        </mat-select>
+      </td>
+      
+      
+      
+      
+     
+     
+      <td>
+          <mat-select [(ngModel)]="dropeditstatus" class="form-control">
+              <mat-option value="1">Active</mat-option>
+              <mat-option value="0">InActive</mat-option>
+             </mat-select>
+      </td>
+      
+      
+      <td>
+          <input type="button" value="Save" class="btn btn-success" (click)="funcupdate()">
+          <input type="button" value="Cancel" class="btn btn-danger" (click)="this.temp=0">
+      </td>
+               
+
+  </ng-template>
+  <pagination-controls (pageChange)="cp=$event"></pagination-controls>
+</div>
+
+

@@ -1,0 +1,37 @@
+<p>{{myaacountdata| json}}</p>
+<div class="container">
+<div>       
+    <img src="../../../assets/profileicon.jpg" width="100px" height="100px" style="margin-left: 450px">
+    <span style="color: burlywood "><b>Hallo !</b>{{myaacountdata[0].fname}}</span>
+</div>
+<div style="z-index: 100;background-color:cornsilk">
+    <h3 class="text-info">Accont Details</h3>
+    <mat-form-field style="width: 40%;margin-right: 25px;margin-left: 10px">
+        <mat-label>Customer Name</mat-label>
+        <input type="text" matInput [(ngModel)]="myaacountdata[0].fname">
+    </mat-form-field>
+    <mat-form-field style="width: 40%;">
+            <mat-label>Customer Email</mat-label>
+            <input type="text" matInput [(ngModel)]="myaacountdata[0].email">
+    </mat-form-field>
+    <mat-form-field style="width: 40%; margin-right: 25px;margin-left: 10px">
+                <mat-label>Customer Password</mat-label>
+                <input type="text" matInput [(ngModel)]="myaacountdata[0].password">
+    </mat-form-field>
+    <mat-form-field style="width: 40%; ">
+                <mat-label>Customer Mobile</mat-label>
+                <input type="text" matInput [(ngModel)]="myaacountdata[0].mobile">
+    </mat-form-field>
+    <mat-form-field style="width: 40%; margin-right: 25px;margin-left: 10px">
+            <mat-label>Customer Gender</mat-label>
+            <input type="text" matInput [(ngModel)]="myaacountdata[0].gender">
+</mat-form-field>
+<mat-form-field style="width: 40%; ">
+        <mat-label>Customer Address</mat-label>
+        <input type="text" matInput [(ngModel)]="myaacountdata[0].address">
+</mat-form-field>
+</div>
+</div>   
+    
+
+

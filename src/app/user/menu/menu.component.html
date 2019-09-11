@@ -1,0 +1,58 @@
+<!-- <NAVIGATION> -->
+    <div id="navigation"> 
+<!-- menu nav -->
+<div class="menu-nav">
+    <span class="menu-header">Menu <i class="fa fa-bars"></i></span>
+    <ul class="menu-list">
+      <li><a href="#">Home</a></li>
+      
+      <li class="dropdown mega-dropdown" *ngFor='let x of catdata'>
+        <a class="dropdown-toggle d-inline" data-toggle="dropdown" aria-expanded="true" >{{x.catname}} </a>
+        <div class="custom-menu">
+          <div class="row">
+              <ng-container *ngFor="let y of subcatdata">
+            <div class="col-md-4" *ngIf="x._id==y.catid">
+              <ul class="list-links" >
+                <li>
+                  <h3 class="list-links-title">{{y.subcatname}}</h3></li>
+                <li *ngFor="let z of subsubcatdata">
+                    <ng-container *ngIf="y._id==z.abc.subcatid">
+          <a href="#" [routerLink]="['showproduct',{subsubcatid:z._id}]">{{z.abc.ssubcatname}}</a>
+        </ng-container>
+        </li>
+               
+              </ul>
+              <hr class="hidden-md hidden-lg">
+            </div>
+            </ng-container>
+            
+            
+          </div>
+          <div class="row hidden-sm hidden-xs">
+            <div class="col-md-12">
+              <hr>
+              <a class="banner banner-1" href="#">
+                <img src="assets/banner05.jpg" alt="">
+                <div class="banner-caption text-center">
+                  <h2 class="white-color">NEW COLLECTION</h2>
+                  <h3 class="white-color font-weak">HOT DEAL</h3>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+      </li>
+     
+       <!-- <li><a href="#">Sales</a></li>
+      <li class="dropdown default-dropdown"><a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">Pages <i class="fa fa-caret-down"></i></a>
+        <ul class="custom-menu">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="products.html">Products</a></li>
+          <li><a href="product-page.html">Product Details</a></li>
+          <li><a href="checkout.html">Checkout</a></li>
+        </ul> 
+      </li> -->
+    </ul>
+  </div>
+  <!-- menu nav -->
+</div>

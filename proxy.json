@@ -1,0 +1,30 @@
+ {
+    "/catref/*":{
+        "target":"http://localhost:1000",
+        "secure":true
+    },
+    "/subcatref/*":{
+        "target":"http://localhost:1000",
+        "secure":true
+    },
+    "/subsubcatref/*":{
+        "target":"http://localhost:1000",
+        "secure":true
+    },
+    "/productref/*":{
+        "target":"http://localhost:1000",
+        "secure":true
+    },
+    "/registrationref/*":{
+        "target":"http://localhost:1000",
+        "secure":true
+    },
+    
+        "/paymentref/*":{
+            "target":"http://localhost:1000",
+            "secure":true
+        }
+    
+
+
+}

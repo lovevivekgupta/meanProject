@@ -1,0 +1,187 @@
+
+<div class="row">
+  <div class="col-lg-6">
+    <mat-form-field  style="width:80%">
+      <input type="number" class="text-dark"  matInput placeholder="Quantity" [(ngModel)]="quantity" autocomplete="off">  
+  </mat-form-field>
+  <mat-form-field style="width:80%">
+     <mat-select placeholder="Select Category" [(ngModel)]="drpCat" (selectionChange)="funGetSubCat()">
+         <mat-option *ngFor='let item of catdata' value="{{item._id}}">
+      {{item.catname}}
+         </mat-option>
+     </mat-select>
+  </mat-form-field>
+
+<br>
+
+<mat-form-field style="width:80%">
+  <mat-select placeholder="Select Sub Category" [(ngModel)]="drpSubCat" (selectionChange)="funGetSubSubCat()">
+    <mat-option *ngFor='let item of varSubcatData' value="{{item._id}}">
+          {{item.subcatname}}
+    </mat-option>
+  </mat-select>
+</mat-form-field >
+
+
+
+<br>
+
+
+<mat-form-field style="width:80%">
+  <mat-select placeholder="Select Sub Sub Category" [(ngModel)]="drpsubsubcat">
+    <mat-option *ngFor='let item of varSubsubcatData' value="{{item._id}}">
+          {{item.subsubcatname}}
+      
+    </mat-option>
+  </mat-select>
+</mat-form-field>
+
+<br>
+<mat-form-field  style="width:80%">
+    <input type="text" class="text-dark"  matInput placeholder="ProductBrand" [(ngModel)]="p_brand">  
+   </mat-form-field>
+   <br>
+<mat-form-field style="width:80%">
+  <input type="text" matInput placeholder="Offers" [(ngModel)]="offers" class="text-dark">
+</mat-form-field>
+<br>
+<mat-form-field style="width:80%">
+  <input type="text" matInput placeholder="Discount" [(ngModel)]="discount" class="text-dark">
+</mat-form-field>
+<br>
+<form action="{{varServerHost}}/insImages" method="post" enctype="multipart/form-data" id="frm1">
+  Image:
+    <input type="file" multiple="true" name="f1" class="bg-dark" >
+</form>
+</div>
+<div class="col-lg-6">
+    <mat-form-field  style="width:80%">
+    <input type="text" class="text-dark"  matInput placeholder="Enter Product" [(ngModel)]="p_name" autocomplete="off">  
+    </mat-form-field>
+    <br>
+    <mat-form-field  style="width:80%">
+    <input type="text" class="text-dark"  matInput placeholder="NewPrice" [(ngModel)]="newp_price">  
+   </mat-form-field>
+   <br>
+   <mat-form-field  style="width:80%">
+      <input type="text" class="text-dark"  matInput placeholder="OldPrice" [(ngModel)]="oldp_price">  
+     </mat-form-field>
+     <br>
+   <mat-form-field style="width:80%">
+      <mat-select placeholder="Product Rating" [(ngModel)]="p_rating">
+        <mat-option  value=1>1</mat-option>
+        <mat-option  value=2>2</mat-option>  
+        <mat-option  value=3>3</mat-option>
+        <mat-option  value=4>4</mat-option>
+        <mat-option  value=5>5</mat-option>
+         </mat-select>
+</mat-form-field>
+<br>
+<mat-form-field style="width:80%">
+    <mat-select class="text-dark" placeholder="Product Type" [(ngModel)]="p_type">
+      <mat-option value="new products">new products</mat-option>
+      <mat-option value="upcoming products">upcoming products</mat-option>
+       </mat-select>
+  </mat-form-field>
+  <br>
+  <mat-form-field>
+      <input type="color"  matInput placeholder="color" [(ngModel)]="p_color"> 
+       
+ </mat-form-field>
+ <br>
+ <button class="btn btn-danger" (click)="funInsertProduct()">INSERT</button>
+</div>
+</div>
+
+<mat-form-field style="width: 70%">
+  <input type="search" class="text-dark" placeholder="Search" matInput [(ngModel)]="search" >
+</mat-form-field>
+
+<table class="table table-striped table table-bordered" width="100%" >
+  <thead class="thead-dark">
+      <tr style="color: lightgoldenrodyellow">
+        
+        <th >Product Id</th>
+        <th>Product Name</th>
+        <th>New Price</th>
+        <th>Product type</th>
+        <th>Product Rating</th>
+        <th>Product Color</th>
+        <th>Discount</th>
+        <th>Offers</th>
+        <th>Quantity</th>
+        <th>Category</th>
+        <th>SubCategory</th>
+        <th>SubSubCategory</th>
+        <th>Edit</th>
+       </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor='let item of productdata | filter:search | paginate:{itemsPerPage:2,currentPage:cp}'>
+        <ng-container *ngIf="temp!=item._id; else editbox">
+        <td>{{item.xyz._id}}</td>
+        <td>{{item.xyz.p_name}}</td>
+        <td>{{item.xyz.newp_price}}</td>
+        <td>{{item.xyz.p_type}}</td>
+        <td>{{item.xyz.p_rating}}</td>
+        <td>{{item.xyz.p_color}}</td>
+        <td>{{item.xyz.discount}}</td>
+        <td>{{item.xyz.offers}}</td>
+        <td>{{item.xyz.quantity}}</td>
+        <td>{{item.xyz.catname}}</td>
+        <td>{{item.xyz.subcatname}}</td>
+        <td>{{item.xyz.subsubcatname}}</td>
+        <td class="btn btn-danger" (click)="funEditProduct(item)">EDIT</td>
+        </ng-container> 
+      </tr>
+    </tbody>
+   <ng-template #editbox>
+      <td><input type="text" class="form-control" [(ngModel)]="selectedData.xyz._id"></td>
+      <td><input type="text" class="form-control" [(ngModel)]="selectedData.xyz.p_name"></td>
+      <td><input type="text" class="form-control"  [(ngModel)]="selectedData.xyz.newp_price" ></td>
+      <td><input type="text" class="form-control"  [(ngModel)]="selectedData.xyz.p_type"></td>
+      <td><input type="text" class="form-control"  [(ngModel)]="selectedData.xyz.p_rating"></td>
+      <td><input type="color" class="form-control"  [(ngModel)]="selectedData.xyz.p_color"></td>
+      <td><input type="text" class="form-control"  [(ngModel)]="selectedData.xyz.discount"></td>
+      <td><input type="text" class="form-control"  [(ngModel)]="selectedData.xyz.offers"></td>
+      <td><input type="text" class="form-control"  [(ngModel)]="selectedData.xyz.quantity"></td>
+      <td>
+        <mat-form-field >
+        <mat-select  [(ngModel)]="drpCat"  (selectionChange)="funGetSubCat()">
+            <mat-option *ngFor='let item of catdata' value="{{item._id}}">
+         {{item.catname}}
+            </mat-option>
+        </mat-select>
+     </mat-form-field>
+    </td>
+      <td>
+          <mat-form-field >
+              <mat-select  [(ngModel)]="drpSubCat" (selectionChange)="funGetSubSubCat()">
+                <mat-option *ngFor='let item of varSubcatData' value="{{item._id}}">
+                      {{item.subcatname}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field >
+      </td>
+      <td>
+          <mat-form-field>
+              <mat-select  [(ngModel)]="drpsubsubcat">
+                <mat-option *ngFor='let item of varSubsubcatData' value="{{item._id}}">
+                      {{item.subsubcatname}}
+                  
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+      </td>
+     <input type="button" value="Save" class="btn btn-success" (click)="funUpdateProduct()">
+     &nbsp;
+     <input type="button" value="Cancel" class="btn btn-danger" (click)="this.temp=0"> 
+
+   </ng-template> 
+
+
+   <pagination-controls (pageChange)="cp=$event" style="position: absolute;left:400px"></pagination-controls>
+
+
+
+   { "error": false, "result": { "cbfb2306-3e8f-4959-b2b7-e716e269314d": { "company_id": "cbfb2306-3e8f-4959-b2b7-e716e269314d", "company_name": "Bharathi Solar Technology 1", "role_name": "Company Admin", "logo": null, "partner_id": "c2623d84-721f-4090-9438-d970449fb115" }, "4cb82a11-f4a5-4cd1-90cb-acadefdea765": { "company_id": "4cb82a11-f4a5-4cd1-90cb-acadefdea765", "company_name": "JETCO SANSKAR GRANITO", "role_name": "Company Admin", "logo": null, "partner_id": "4444ed4b-b1d4-4b95-9c0c-f34f1f4e0523" }, "95065fc3-10b9-4b0b-9e06-869070a8d7dd": { "company_id": "95065fc3-10b9-4b0b-9e06-869070a8d7dd", "company_name": "Rishabh Demo ", "role_name": "Company Admin", "logo": "95065fc3-10b9-4b0b-9e06-869070a8d7dd.png", "partner_id": "4444ed4b-b1d4-4b95-9c0c-f34f1f4e0523" }, "aa77a06b-576d-49d5-9b8c-2410b4867b58": { "company_id": "aa77a06b-576d-49d5-9b8c-2410b4867b58", "company_name": "Rishabh Instruments", "role_name": "Company Admin", "logo": "aa77a06b-576d-49d5-9b8c-2410b4867b58.png", "partner_id": "4444ed4b-b1d4-4b95-9c0c-f34f1f4e0523" } } }

@@ -1,0 +1,40 @@
+{{usercartdata | json}}
+<br><br>
+{{UserDetails | json}}
+<h3 class="text-primary text-center">Billing Information</h3>
+<hr>
+<div class="container-fluid">
+<table class="table table-striped table-bordered table table-dark">
+  <thead>
+    <th>Total Products</th>
+    <th>Total Quantity</th>
+    <th>Total Product Price</th>
+  </thead>
+  <tbody>
+    <td>{{userdata.length}}</td>
+    <td>{{msgTotal }}</td>
+    <td>{{tot_pro_price }}</td>
+  </tbody>
+</table>
+</div>
+<div class="container">
+  <h3 class="text-primary text-center">Billing Address</h3>
+  <mat-form-field style="width:500px">
+    <input type="text" matInput  placeholder="Customer Name" [(ngModel)]="UserDetails[0].fname">
+  </mat-form-field>
+  <br>
+  <mat-form-field style="width:500px">
+    <input type="text" matInput  placeholder="Mobile" [(ngModel)]="UserDetails[0].mobile">
+  </mat-form-field>
+  <br>
+  <mat-form-field style="width:500px">
+    <input type="text" matInput  placeholder="Email" [(ngModel)]="UserDetails[0].email">
+  </mat-form-field>
+  <br>
+  <mat-form-field style="width:500px">
+    <input type="text" matInput  placeholder="Address" [(ngModel)]="UserDetails[0].address">
+  </mat-form-field>
+  <br>
+  <input type="button" value="Order now" class="btn btn-primary" (click)="payment()">
+</div>
+
